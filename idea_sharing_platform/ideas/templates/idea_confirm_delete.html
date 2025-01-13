@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Potvrda brisanja</title>
+</head>
+<body>
+    <h1>Potvrda brisanja</h1>
+    <p>Jeste li sigurni da želite obrisati "{{ object.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Da, obriši</button>
+    </form>
+    <a href="{% url 'idea_list' %}">Odustani</a>
+</body>
+</html>
