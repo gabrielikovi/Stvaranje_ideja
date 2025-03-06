@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Popis Ideja</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        nav {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a, nav form button {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        nav a:hover, nav form button:hover {
+            text-decoration: underline;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .search-box {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            padding: 8px;
+            width: 60%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .search-box button {
+            padding: 8px 15px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .search-box button:hover {
+            background-color: #555;
+        }
+        .idea-list {
+            list-style: none;
+            padding: 0;
+        }
+        .idea-list li {
+            background: #fff;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .idea-list a {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .idea-list a:hover {
+            text-decoration: underline;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        .pagination a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/ideas">Home</a>
+        <a href="/ideas/new/">Add Idea</a>
+
+        {% if user.is_authenticated %}
+            {% if is_admin %}
+                <a href="/users/">All Users</a>
+            {% endif %}
+            <form method="POST" action="{% url 'logout' %}" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </nav>
+
+    <div class="container">
+        <h1>Popis Ideja</h1>
+
+        <form method="get" action="" class="search-box">
+            <input type="text" name="q" placeholder="Pretraži ideje..." value="{{ request.GET.q }}">
+            <button type="submit">Pretraži</button>
+        </form>
+
+        <ul class="idea-list">
+            {% for idea in ideas %}
+            <li>
+                <a href="{% url 'idea_detail' idea.id %}">{{ idea.title }}</a>
+                <p>{{ idea.description|truncatewords:10 }}</p>
+            </li>
+            {% empty %}
+            <li>Nema dostupnih ideja.</li>
+            {% endfor %}
+        </ul>
+
+        {% if is_paginated %}
+        <div class="pagination">
+            {% if page_obj.has_previous %}
+                <a href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}">Prethodna</a>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <a href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}">Sljedeća</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

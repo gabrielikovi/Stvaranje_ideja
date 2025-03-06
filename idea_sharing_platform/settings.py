@@ -19,6 +19,10 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/ideas'
+LOGOUT_REDIRECT_URL = '/'
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
@@ -32,6 +36,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ideas',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -42,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #'ideas.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'idea_sharing_platform.urls'

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ideas | Register</title>
+    <style>
+      /* General Styles */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      /* Form Container */
+      .container {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      /* Title */
+      h2 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
+
+      /* Form Styling */
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      label {
+        font-weight: bold;
+        font-size: 14px;
+        color: #555;
+        text-align: left;
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 16px;
+        transition: border-color 0.3s;
+      }
+
+      input:focus {
+        border-color: #007BFF;
+        outline: none;
+        box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.2);
+      }
+
+      /* Register Button */
+      button {
+        padding: 12px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s, transform 0.1s;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      button:active {
+        transform: scale(0.98);
+      }
+
+      /* Login Link */
+      .login-link {
+        display: inline-block;
+        margin-top: 15px;
+        font-size: 14px;
+        color: #007BFF;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .login-link:hover {
+        text-decoration: underline;
+        color: #0056b3;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 500px) {
+        .container {
+          width: 90%;
+          padding: 30px;
+        }
+        h2 {
+          font-size: 20px;
+        }
+        button {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <h2>Sign up</h2>
+      <form method="post" action="{% url 'register' %}">
+        {% csrf_token %}
+
+        <div>
+          <label for="{{ form.username.id_for_label }}">Username</label>
+          <input
+            type="text"
+            name="username"
+            id="{{ form.username.id_for_label }}"
+            value="{{ form.username.value|default_if_none:'' }}"
+            placeholder="Enter your username"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="{{ form.email.id_for_label }}">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="{{ form.email.id_for_label }}"
+            value="{{ form.email.value|default_if_none:'' }}"
+            placeholder="Enter your email"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="{{ form.password1.id_for_label }}">Password</label>
+          <input
+            type="password"
+            name="password1"
+            id="{{ form.password1.id_for_label }}"
+            placeholder="Enter your password"
+            required
+          />
+        </div>
+
+        <div>
+          <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+          <input
+            type="password"
+            name="password2"
+            id="{{ form.password2.id_for_label }}"
+            placeholder="Confirm your password"
+            required
+          />
+        </div>
+
+        <button type="submit">Register</button>
+
+        <p>
+          Already have an account?
+          <a href="{% url 'login' %}" class="login-link">Login here</a>
+        </p>
+      </form>
+    </div>
+
+  </body>
+</html>
