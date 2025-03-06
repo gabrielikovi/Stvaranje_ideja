@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prijava</title>
+    <title>Login</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -17,7 +17,6 @@
             height: 100vh;
         }
 
-        /* Centered Container */
         .container {
             background: white;
             padding: 40px;
@@ -28,14 +27,12 @@
             text-align: center;
         }
 
-        /* Title */
         h2 {
             color: #333;
             margin-bottom: 20px;
             font-size: 24px;
         }
 
-        /* Form Styling */
         form {
             display: flex;
             flex-direction: column;
@@ -64,7 +61,6 @@
             box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.2);
         }
 
-        /* Submit Button */
         button {
             padding: 12px;
             background-color: #007BFF;
@@ -84,7 +80,6 @@
             transform: scale(0.98);
         }
 
-        /* Register Link */
         .register-link {
             display: inline-block;
             margin-top: 15px;
@@ -99,32 +94,35 @@
             color: #0056b3;
         }
 
-        /* Responsive Design */
         @media (max-width: 500px) {
             .container {
                 width: 90%;
                 padding: 30px;
             }
+
             h2 {
                 font-size: 20px;
             }
+
             button {
                 font-size: 14px;
             }
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        <h2>Prijavite se</h2>
+        <h2>Ready to share your ideas?</h2>
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit">Prijava</button>
+            <button type="submit">Login</button>
         </form>
-        <a href="{% url 'register' %}" class="register-link">Nemate račun? Registrirajte se</a>
+        <a href="{% url 'register' %}" class="register-link">Don't have an account, sign up!</a>
     </div>
 
 </body>
+
 </html>

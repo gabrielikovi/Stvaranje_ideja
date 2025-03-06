@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalji Ideje</title>
+    <title>Idea detail</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -17,7 +17,6 @@
             height: 100vh;
         }
 
-        /* Idea Detail Container */
         .container {
             background: white;
             padding: 30px;
@@ -28,14 +27,12 @@
             text-align: center;
         }
 
-        /* Title */
         h1 {
             color: #333;
             margin-bottom: 15px;
             font-size: 24px;
         }
 
-        /* Idea Details */
         p {
             font-size: 16px;
             color: #555;
@@ -46,7 +43,6 @@
             color: #222;
         }
 
-        /* Buttons */
         .btn-container {
             margin-top: 20px;
             display: flex;
@@ -83,11 +79,11 @@
             background-color: #b71c1c;
         }
 
-        .btn-delete:active, .btn-edit:active {
+        .btn-delete:active,
+        .btn-edit:active {
             transform: scale(0.98);
         }
 
-        /* Back Link */
         .back-link {
             display: block;
             margin-top: 20px;
@@ -103,25 +99,25 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
         <h1>{{ idea.title }}</h1>
-        <p><strong>Opis:</strong> {{ idea.description }}</p>
-        <p><strong>Autor:</strong> {{ idea.author.username }}</p>
-        <p><strong>Datum kreiranja:</strong> {{ idea.created_at }}</p>
+        <p><strong>Description:</strong> {{ idea.description }}</p>
+        <p><strong>Author:</strong> {{ idea.author.username }}</p>
+        <p><strong>Created at:</strong> {{ idea.created_at }}</p>
 
-        <!-- Buttons for Update & Delete -->
         <div class="btn-container">
-            <a href="{% url 'idea_update' idea.id %}" class="btn btn-edit">Uredi</a>
+            <a href="{% url 'idea_update' idea.id %}" class="btn btn-edit">Edit</a>
             <a href="{% url 'idea_delete' idea.id %}" class="btn btn-delete">
-                Obriši
+                Delete
             </a>
         </div>
 
-        <!-- Back Link -->
-        <a href="{% url 'idea_list' %}" class="back-link">← Nazad na popis ideja</a>
+        <a href="{% url 'idea_list' %}" class="back-link">← Back to idea list</a>
     </div>
 
 </body>
+
 </html>

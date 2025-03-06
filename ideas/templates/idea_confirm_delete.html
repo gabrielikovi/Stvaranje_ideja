@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Potvrda brisanja</title>
+    <title>Delete confirmation</title>
     <style>
-        /* General Styles */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -17,7 +17,6 @@
             height: 100vh;
         }
 
-        /* Confirmation Container */
         .container {
             background: white;
             padding: 30px;
@@ -28,28 +27,24 @@
             text-align: center;
         }
 
-        /* Title */
         h1 {
             color: #d9534f;
             margin-bottom: 15px;
             font-size: 22px;
         }
 
-        /* Warning Text */
         p {
             font-size: 16px;
             color: #555;
             margin-bottom: 20px;
         }
 
-        /* Buttons Container */
         .btn-container {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
         }
 
-        /* Buttons */
         .btn {
             padding: 10px 15px;
             font-size: 14px;
@@ -83,19 +78,21 @@
             background-color: #5a6268;
         }
 
-        .btn-delete:active, .btn-cancel:active {
+        .btn-delete:active,
+        .btn-cancel:active {
             transform: scale(0.98);
         }
 
-        /* Responsive Design */
         @media (max-width: 500px) {
             .container {
                 width: 90%;
                 padding: 25px;
             }
+
             h1 {
                 font-size: 20px;
             }
+
             .btn {
                 font-size: 13px;
                 padding: 8px;
@@ -103,20 +100,22 @@
         }
     </style>
 </head>
+
 <body>
 
     <div class="container">
-        <h1>Potvrda brisanja</h1>
-        <p>Jeste li sigurni da želite obrisati "<strong>{{ object.title }}</strong>"?</p>
+        <h1>Delete confirmation</h1>
+        <p>Are you sure you want to delete "<strong>{{ object.title }}</strong>"?</p>
 
         <form method="post">
             {% csrf_token %}
             <div class="btn-container">
-                <button type="submit" class="btn btn-delete">Da, obriši</button>
-                <a href="{% url 'idea_list' %}" class="btn btn-cancel">Odustani</a>
+                <button type="submit" class="btn btn-delete">Yes, delete</button>
+                <a href="{% url 'idea_list' %}" class="btn btn-cancel">Exit</a>
             </div>
         </form>
     </div>
 
 </body>
+
 </html>

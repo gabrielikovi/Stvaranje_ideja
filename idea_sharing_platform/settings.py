@@ -48,7 +48,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'ideas.middleware.LoginRequiredMiddleware',
 ]
 
 ROOT_URLCONF = 'idea_sharing_platform.urls'
